@@ -33,9 +33,9 @@
 				<!-- Form to Send Feedback-->
 				<form method="POST">
 					<select name='instructor' class="feedback-form">
-						<option disabled selected>Select your Instructor</option>
-						{% for name in session['instructor_info'].items() %}
-							<option>{{ name }}</option>
+						<option disabled selected>Select your Instructor (Given by their name then username)</option>
+						{% for name, username in session['instructor_info'].items() %}
+							<option>{{ name }} | {{ username }}</option>
 						{% endfor %}
 					</select>
 					<label> What do you like about the instructor teaching? </label>
