@@ -29,6 +29,6 @@ Users can view basic course content such as syllabus, resources, etc. from the h
 This site adjusts to different screen devices or screen sizes:
 1250x650px                 |  390x844px
 :-------------------------:|:-------------------------:
-![img](static/img/1250x650.png)  |  ![img](static/img/380x844.png)
+![img](static/img/1250x650.png)  |  ![img](static/img/390x844.png)
 
 ## 
