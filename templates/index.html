@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Make page view scale with screen-width of device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Introduction to Web Development</title>
+	<link rel="icon" href="../static/img/title_icon.png">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<div class="nav-bar">
+		<input type='checkbox' id="drop-down-menu">
+		<label class="drop-button" for=drop-down-menu></label>
+		<ul>
+			<li><a href="#home-page">Home</a></li>
+			<li><a href="#course-team-page">Course Team</a></li>
+			<li><a href="#calendar-page">Calendar</a></li>
+			<li><a href="#news-page">Notifications</a></li>
+			<li><a href="https://piazza.com/" target="_blank">Piazza</a></li>
+			<li><a href="#lectures-page">Lectures</a></li>
+			<li><a href="#assignments-page">Assignments</a></li>
+			<li><a href="#resources-page">Resources</a></li>
+			<!-- Check if usertype is student -->
+			{% if session['usertype'] and session['usertype'] == 'Student' %}
+				<li><a href="/send_feedback">Feedback</a></li>
+			{% endif %}
+			<!-- Check if user is logged in -->
+			{% if session['usertype'] %}
+				<li><a href="/account">My Account</a></li>
+				<li><a href="/logout">Logout</a></li>
+			{% else %}
+				<li><a href="/login">Login</a></li>
+			{% endif %}
+		</ul>
+	</div>
+	<!-- Check if there are any flased messages-->
+	{% with messages = get_flashed_messages() %}
+		<!-- Loop through messages-->
+		{% if messages %}
+			{% for message in messages %}
+				<!-- Check if its a error message-->
+				{% if session['pop_up'] and session['pop_up'] == 'error' %}
+					<div class ="pop-up error">
+				{% else %}
+					<div class ="pop-up">
+				{% endif %}
+					<h5>{{ message }}</h5>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<!-- New Section of Page-->
+	<div id="home-page" class="section-border">
+		<div class="home-name">
+			<div class="border-design">
+				<h2>
+				Introduction to Web Development
+				</h2>
+			</div>
+		</div>
+		<div class="page-desc-text">
+			<div class="border-design">
+				<h2 class="page-header">Course Description</h2>
+				<p>Dive into the world of web development with our "Introduction to Web Development" course. Perfect for beginners, this course covers the basics of HTML, CSS, and JavaScript, empowering you to create your own websites. Through hands-on projects, you'll learn to build and style web pages, ensuring a solid foundation in the essentials of web development.</p>
+				<h3 class="text-header">Prerequisite</h3>
+				<p>Basic knowledge of Python is recommended to enhance your understanding of fundamental programming concepts.</p>
+				<h3 class="text-header">Syllabus: <span class="info-text"><a href="../static/pdf/Syllabus/Syllabus.pdf" target="_blank">PDF</a></span></h3>
+				<h3 class="text-header">Lectures</h3>
+				<p>Tuesdays 12:00-2:00 in RM 442</p>
+			</div>
+		</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="course-team-page" class="section-border">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<h2 class="page-header">Course Team</h2>
+				<h3 id="sub-header">Instructors</h3>
+				<div class="table-layout">
+					<div class="table-row course-table-prop">
+						<div class="team-col">
+							<div class="course-team-info">
+								<img src="../static/img/Instructor1_pic.jpg">
+								<h4>Sue Allen</h4>
+								<h4>Email: <span class="info-text"><a href="mailto:sallen@inst.cs.ca">sallen@inst.cs.ca</a></span></h4>
+								<h4>Office: <span class="info-text">RM452</span></h4>
+								<h4>Office Hours: <span class="info-text hour-text">Fri 2:00PM-3:00PM</span></h4>
+							</div>
+						</div>
+						<div class="team-col">
+							<div class="course-team-info">
+								<img src="../static/img/Instructor2_pic.jpg">
+								<h4>John Smith</h4>
+								<h4>Email: <span class="info-text"><a href="mailto:jsmith@inst.cs.ca">jsmith@inst.cs.ca</a></span></h4>
+								<h4>Office: <span class="info-text">RM303</span></h4>
+								<h4>Office Hours: <span class="info-text hour-text">Tue 10:00AM-11:00AM</span></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 id="sub-header">Teaching Assistants</h3>
+				<div class="table-layout">
+					<div class="table-row course-table-prop">
+						<div class="team-col">
+							<div class="course-team-info">
+								<img src="../static/img/Unknown_TA.jpg">
+								<h4>Jane Hill</h4>
+								<h4>Email: <span class="info-text"><a href="mailto:jhill@inst.cs.ca">jhill@inst.cs.ca</a></span></h4>
+								<h4>Office: <span class="info-text">RM350</span></h4>
+								<h4>Office Hours: <span class="info-text hour-text">TBH</span></h4>
+							</div>
+						</div>
+						<div class="team-col">
+							<div class="course-team-info">
+								<img src="../static/img/Unknown_TA.jpg">
+								<h4>Kevin Lee</h4>
+								<h4>Email: <span class="info-text"><a href="mailto:klee@inst.cs.ca">klee@inst.cs.ca</a></span></h4>
+								<h4>Office: <span class="info-text">RM350</span></h4>
+								<h4>Office Hours: <span class="info-text hour-text">Tue 2:00PM-3:00PM</span></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="calendar-page" class="section-border">
+			<div class="page-desc-text">
+				<div class="border-design">	
+					<h2 class="page-header">Calendar</h2>
+					<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%237986CB&ctz=America%2FToronto&mode=MONTH&src=MDMxMjBhNGRhNjNjMDUwMDljZTg1MWY2YTJlOTgzODYzNGQ4NDdiYzZjODI2M2RmMGMyYWMxOTc2ZTcwYzE4M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23AD1457" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+				</div>
+			</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="news-page" class="section-border">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<h2 class="page-header">Notifications</h2>
+				<h3>Any upcoming assignments, test, and news will be posted here.</h3>
+				<h3 class="text-header">Sept. 7</h3>
+				<ul>
+					<li>Welcome to the first day of our "Introduction to Web Development" course! We're excited to embark on this learning journey with you, and we look forward to exploring the fundamentals of web development together.</li>
+				</ul>
+				<h3 class="text-header">Oct. 5 @ 10:00 PM</h3>
+				<ul>
+					<li>Assignment 1 due (More info on <a href="#assignments-page">assignments section</a>)</li>
+				</ul>
+				<h3 class="text-header">Oct. 20 @ 2:00 PM</h3>
+				<ul>
+					<li>Midterm (More info on <a href="#tests-page">tests section</a>)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="lectures-page" class="section-border">
+			<div class="page-desc-text">
+				<div class="border-design">
+					<h2 class="page-header">Lecture Schedule</h2>
+					<p>A basic schedule we will try to follow for this semester.
+					</p>
+					<div class="table-layout">
+						<div class="table-row schedule-table-prop">
+							<div class="week-col">
+								<div class="table-header">
+									<h3>Week</h3>
+								</div>
+							</div>
+							<div class="topic-col">
+								<div class="table-header">
+									<h3>Topic</h3>
+								</div>
+							</div>
+							<div class="reading-col">
+								<div class="table-header">
+									<h3>Lecture Notes</h3>
+								</div>
+							</div>
+							<div class="lec-col">
+								<div class="table-header">
+									<h3>Extra Readings</h3>
+								</div>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop odd-row">
+							<div class="week-col">
+								<h4>1-2</h4>
+							</div>
+							<div class="topic-col">
+								<h4>Course Introduction + HTML and CSS Fundamentals</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://www.theodinproject.com/lessons/foundations-introduction-to-html-and-css" 
+								target="_blank">Intro to HTML & CSS</a></h4>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop">
+							<div class="week-col">
+								<h4>3-4</h4>
+							</div>
+							<div class="topic-col">
+								<h4>Javascript Basics</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://www.theodinproject.com/lessons/node-path-javascript-organizing-your-javascript-code-introduction"
+								target="_blank">Organizing Javascript Code</a></h4>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop odd-row">
+							<div class="week-col">
+								<h4>5-6</h4>
+							</div>
+							<div class="topic-col">
+								<h4>Responsive Design</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://www.theodinproject.com/lessons/node-path-advanced-html-and-css-introduction-to-responsive-design" target="_blank">Intro to Responsive Design</a></h4>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop">
+							<div class="week-col">
+								<h4>7-8</h4>
+							</div>
+							<div class="topic-col">
+								<h4>Web Development Tools</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://en.wikipedia.org/wiki/Web_development_tools" target="_blank">Some tools to look into</a></h4>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop odd-row">
+							<div class="week-col">
+								<h4>9-10</h4>
+							</div>
+							<div class="topic-col">
+								<h4>SQL and MySQL Introduction</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://www.w3schools.com/sql/sql_create_table.asp" 
+								target="_blank">SQL Tables</a></h4>
+							</div>
+						</div>
+						<div class="table-row schedule-table-prop">
+							<div class="week-col">
+								<h4>11-12</h4>
+							</div>
+							<div class="topic-col">
+								<h4>SQL and MySQL Continued. + Review</h4>
+							</div>
+							<div class="lec-col">
+								<h4><a href="../static/pdf/Lecture/Lecture.pdf" target="_blank">Annotated Notes</a><br></h4>
+							</div>
+							<div class="reading-col">
+								<h4><a href="https://www.quackit.com/sql/tutorial/sql_outer_join.cfm" 
+								target="_blank">Outer Join</a><br><br>
+								<a href="https://www.tutorialspoint.com/sql/sql-using-views.htm" 
+								target="_blank">Views</a><br><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="assignments-page" class="section-border">
+			<div class="page-desc-text">
+				<div class="border-design">
+					<h2 class="page-header">Assignments</h2>
+					<p>Basic details about the assignements</p>
+					<div class="table-layout">
+						<div class="table-row assignment-table-prop">
+							<div class="num-col">
+								<div class="table-header">
+									<h3>#</h3>
+								</div>
+							</div>
+							<div class="exercise-col">
+								<div class="table-header">
+									<h3>File</h3>
+								</div>
+							</div>
+							<div class="assignment-topic-col">
+								<div class="table-header">
+									<h3>Related Topics</h3>
+								</div>
+							</div>
+							<div class="weight-col">
+								<div class="table-header">
+									<h3>Weight</h3>
+								</div>
+							</div>
+							<div class="due-col">
+								<div class="table-header">
+									<h3>Due Date</h3>
+								</div>
+							</div>
+							<div class="assignment-solution-col">
+								<div class="table-header">
+									<h3>Solution</h3>
+								</div>
+							</div>
+						</div>
+						<div class="table-row assignment-table-prop">
+							<div class="num-col">
+								<h4>1</h4>
+							</div>
+							<div class="exercise-col">
+								<h4><a href="../static/pdf/Assignment/Assignment.pdf" target="_blank">A1 Outline</a><br></h4>
+							</div>
+							<div class="assignment-topic-col">
+								<h4>HTML/CSS & Javascript</h4>
+							</div>
+							<div class="weight-col">
+								<h4>10%</h4>
+							</div>
+							<div class="due-col">
+								<h4>Due on October 5th @ 10:00PM</h5></h4>
+							</div>
+							<div class="assignment-solution-col">
+								<h4><a href="../static/pdf/Assignment/Assignment_sol.pdf" target="_blank">A1 Solution</a></h4>
+							</div>
+						</div>
+						<div class="table-row assignment-table-prop  odd-row">
+							<div class="num-col">
+								<h4>2</h4>
+							</div>
+							<div class="exercise-col">
+								<h4><a href="../static/pdf/Assignment/Assignment.pdf" target="_blank">A2 Outline</a><br></h4>
+							</div>
+							<div class="assignment-topic-col">
+								<h4>MySQL</h4>
+							</div>
+							<div class="weight-col">
+								<h4>P1: 5%<br>P2: 5%</h4>
+							</div>
+							<div class="due-col">
+								<h4>Part 1: Due on November 2, 10:00PM<br> Part 2: Due on November 19, 10:00PM</h4>
+							</div>
+							<div class="assignment-solution-col">
+								<h4><a href="../static/pdf/Assignment/Assignment_sol.pdf" target="_blank">A2 Solution</a></h4>
+							</div>
+						</div>
+						<div class="table-row assignment-table-prop">
+							<div class="num-col">
+								<h4>3</h4>
+							</div>
+							<div class="exercise-col">
+								<h4><a href="../static/pdf/Assignment/Assignment.pdf" target="_blank">A3 Outline</a><br></h4>
+							</div>
+							<div class="assignment-topic-col">
+								<h4>Cumulative</h4>
+							</div>
+							<div class="weight-col">
+								<h4>10%</h4>
+							</div>
+							<div class="due-col">
+								<h4>TBD</h4>
+							</div>
+							<div class="assignment-solution-col">
+								<h4><a href="../static/pdf/Assignment/Assignment_sol.pdf" target="_blank">A3 Solution</a></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<!-- New Section of Page-->
+	<div id="resources-page" class="section-border">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<h2 class="page-header">Resources</h2>
+				<h3 class="text-header">Helpful Materials</h3>
+				<ul>
+					<li><a href="#home-page">Course website</a> should be checked reguarly for information on tets, assignments and important updates.</li>
+					<li><a href="https://piazza.com/" target="_blank">Piazza</a> can be used to ask questions about the course material to fellow classmates and TAs.</li>
+					<li><a href="https://www.theodinproject.com/paths/foundations/courses/foundations" target="_blank">Link</a> to a open source project to get a basic intro to web development</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<h5>Intitute of Computer Studies</h5>
+		<h5>Site design by Shuvarthy Debnath</h5>
+		<h5><a href="/credits" target="_blank">Credits</a></h5>
+	</footer>
+</body>
+</html>

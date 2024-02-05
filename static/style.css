@@ -1,0 +1,66 @@
+body {
+	margin: 0px;
+	background: url(img/back7.png);
+}
+
+.page-header {
+	text-align: center;
+}
+
+/* Page text display and design*/
+.page-desc-text {
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+	text-align: left;
+	color:#46494f;
+}
+
+/*
+ === PAGE BORDER DISPLAY AND DESIGN ===
+*/
+.border-design {
+	border: 1px #E6E8F4 solid;
+	box-shadow: 0 0 25px #000;
+	border-radius: 10px;
+	background-color: #E6E8F4;
+	padding: 0px 20px;
+}
+
+/* Form display and design*/
+.feedback-form {
+	color: #3C457D;
+	margin-bottom: 20px;
+	font-size: 15px;
+	width: 100%;
+	font-weight: bold;
+}
+
+/* Submit button display and design*/
+.btn {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.btn-submit {
+	color: #FFF;
+	background-color: #444E8E;
+	border-color: #444E8E;
+	padding: 15px 10px;
+	font-size: 0.85em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.btn-submit:hover {
+	height: 35%;
+	text-shadow: 1px 0px 20px #FFF;
+	box-shadow: 0px 0px 2px #000;
+}
+
+.error h4{
+	padding:10px 10px;
+	display: inline-block;
+	color: white;
+	background-color: #ff6666;
+}

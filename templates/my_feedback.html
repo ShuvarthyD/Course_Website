@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Make page view scale with screen-width of device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Introduction to Web Development</title>
+	<link rel="icon" href="../static/img/title_icon.png">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<!-- Check if there are any flased messages-->
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<!-- Loop through messages-->
+			{% for message in messages %}
+				<!-- Check if its a error message-->
+				{% if session['pop_up'] and session['pop_up'] == 'error' %}
+					<div class ="pop-up error">
+				{% else %}
+					<div class ="pop-up">
+				{% endif %}
+					<h5>{{ message }}</h5>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<!-- New Section of Page-->
+	<div id="feedback-page">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<a class="info-text" href="/account">Back To My Account</a>
+				<h2 class="page-header">My Feedback</h2>
+				<!-- Loop throguh every feedback for the Instructor-->
+				{% for feedbacks in session['instructor_feedback'].values() %}
+					<div class="feedback-border">
+						<h4 class="feedback-question">What do you like about the instructor teaching?</h4>
+						<h4 class="feedback-ans">{{ feedbacks[0] }}</h4>
+						<h4 class="feedback-question">What do you recommend the instructor to do to improve their teaching?</h4>
+						<h4 class="feedback-ans">{{ feedbacks[1] }}</h4>
+						<h4 class="feedback-question">What do you like about the labs?</h4>
+						<h4 class="feedback-ans">{{ feedbacks[2] }}</h4>
+						<h4 class="feedback-question">What do you recommend the lab instructors to do to improve their lab teaching?</h4>
+						<h4 class="feedback-ans">{{ feedbacks[3] }}</h4>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

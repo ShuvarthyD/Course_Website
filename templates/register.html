@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Make page view scale with screen-width of device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Introduction to Web Development</title>
+	<link rel="icon" href="../static/img/title_icon.png">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<!-- Check if there are any flased messages-->
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<!-- Loop through messages-->
+			{% for message in messages %}
+				<!-- Check if its a error message-->
+				{% if session['pop_up'] and session['pop_up'] == 'error' %}
+					<div class ="pop-up error">
+				{% else %}
+					<div class ="pop-up">
+				{% endif %}
+					<h5>{{ message }}</h5>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<div id="input-page">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<img class="login-logo" src="../static/img/UofT_Logo.png">
+				<h3 class="text-header">Register an Account</h3>
+				<!-- Form to Resister Account-->
+				<form method="POST">
+					<label>User Type: </label>
+					<select class="feedback-form" name ="user-type">
+						<option disabled selected>Select your option</option>
+						<option>Instructor</option>
+						<option>Student</option>
+					</select>
+					<label>Name: </label>
+					<input class="feedback-form" type="text" placeholder="Enter Name" name ="name">
+					<label>Username: </label>
+					<input class="feedback-form" type="text" placeholder="Enter Username" name ="username">
+					<label>Password: </label>
+					<input class="feedback-form" type="text" placeholder="Enter Password" name ="password">
+					<div class="btn">
+						<button class="btn-submit" type = "register">register</button>
+					</div>
+				</form>
+				<h4>Already got an account? <a href="{{ url_for('login') }}">Click here</a> to login</h4>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

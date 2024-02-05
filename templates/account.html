@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Make page view scale with screen-width of device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Introduction to Web Development</title>
+	<link rel="icon" href="../static/img/title_icon.png">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<!-- Check if there are any flashed messages-->
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<!-- Loop through messages-->
+			{% for message in messages %}
+				<!-- Check if its a error message-->
+				{% if session['pop_up'] and session['pop_up'] == 'error' %}
+					<div class ="pop-up error">
+				{% else %}
+					<div class ="pop-up">
+				{% endif %}
+					<h5>{{ message }}</h5>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<div class="account-name">
+			<div class="page-desc-text">
+				<div class="border-design">
+					<a class="info-text" href="/index">Back Home</a>
+					<h1 class="page-header">My Account</h1>
+					<h2 class="text-header">Account Info</h2>
+					<!-- Display user info from session data -->
+					<h4>User Type: <span class="info-text">{{ session['usertype'] }}</span></h4>
+					<h4>Name: <span class="info-text">{{ session['name'] }}</span></h4>
+					<h4>Username: <span class="info-text">{{ session['username'] }}</span></h4>
+					<!-- Check if user is a student then display there marks-->
+					{% if session['usertype'] and session['usertype'] == 'Student' %}
+						<h2 class="page-header">Grades (%)</h2>
+						<div class="table-layout">
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Assignment 1</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['assignemnt1'] }}</h4>
+								</div>
+								<!-- Form for remark input -->
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+										<!-- Create a hidden input on form to state assessment type -->
+										<input type="hidden" name="remark-type" value="remark_a1">
+										<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+										<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Assignment 2</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['assignemnt2'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_a2">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Assignment 3</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['assignemnt3'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_a3">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Quiz 1</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['quiz1'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_q1">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Quiz 2</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['quiz2'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_q2">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Quiz 3</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['quiz3'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_q3">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Midterm</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['midterm'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_midterm">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+							<div class="table-row mark-table-prop odd-row">
+								<div class="mark-header header-col">
+									<h3>Final</h3>
+								</div>
+								<div class="mark-col">
+									<h4>{{ session['final'] }}</h4>
+								</div>
+								<div class="remark-col">
+									<form class= 'table-row remark-section' method="POST">
+											<input type="hidden" name="remark-type" value="remark_final">
+											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
+											<button class="" type = "submit">submit remark request</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					<!-- If its a instructor -->
+					{% else %}
+						<a class="info-text" href="/my_feedback">My FeedBack</a>
+						<h2 class="page-header">Student Grades</h2>
+						<div class="table-layout">
+							<div class="table-row instructor-table-prop">
+								<div class="stud-name-col">
+									<div class="table-header">
+										<h3>Name & Username</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A1</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A2</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A3</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q1</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q2</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q3</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Midterm</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Final</h3>
+									</div>
+								</div>
+							</div>
+							<!-- Loop thorugh every student and display info-->
+							{% for user, infos in session['student_info'].items() %}
+								<!-- Check if its a odd row -->
+								{% if infos[0] %}
+									<div class="table-row instructor-table-prop odd-row">
+								{% else %}
+									<div class="table-row instructor-table-prop">
+								{% endif %}
+									<div class="stud-name-col">
+										<h4>{{ infos[1] }}</h4>
+										<h4> {{ user }}</h4>
+									</div>
+									<!-- Loop thorugh all the marks for that student -->
+									{% for info in infos[2:] %} 
+										<div class="stud-mark-col">
+											{% for type, mark in info.items() %} 
+											<h4>{{ mark }}
+												<!-- Form for Instructor to change marks -->
+												<form method="POST">
+													<input type ="hidden" name="instructor-mark-type" value="{{ user }} {{ type }}">
+													<input class="change-mark" name="instructor-mark-val" placeholder="New Mark">
+													<button type = "submit">Change Mark</button>
+												</form>
+											</h4>
+											{% endfor %}
+										</div>
+									{% endfor %}
+								</div>
+							{% endfor %}
+						</div>
+						<h2 class="page-header">Student Remark Requests</h2>
+						<div class="table-layout">
+							<div class="table-row instructor-table-prop">
+								<div class="stud-name-col">
+									<div class="table-header">
+										<h3>Name & Username</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A1</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A2</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>A3</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q1</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q2</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Q3</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Midterm</h3>
+									</div>
+								</div>
+								<div class="stud-mark-col">
+									<div class="table-header">
+										<h3>Final</h3>
+									</div>
+								</div>
+							</div>
+							<!-- Loop thorugh every student and display info-->
+							{% for user, infos in session['student_remark'].items() %}
+								<!-- Check if its a odd row -->
+								{% if infos[0] %}
+									<div class="table-row instructor-table-prop odd-row">
+								{% else %}
+									<div class="table-row instructor-table-prop">
+								{% endif %}
+									<div class="stud-name-col">
+										<h4>{{ infos[1] }}</h4>
+										<h4> {{ infos[2] }}</h4>
+									</div>
+									{% for info in infos[3:] %} 
+										<div class="stud-mark-col">
+											<h4>{{ info }}</h4>
+										</div>
+									{% endfor %}
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+	</div>
+</body>
+</html>

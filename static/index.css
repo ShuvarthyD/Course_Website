@@ -1,0 +1,557 @@
+* {
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0px;
+	background: url(img/back7.png);
+}
+
+iframe {
+	width: 100%;
+}
+
+footer {
+	padding-bottom: 10px;
+	background-color: #E6E8F4;
+	/* box h-offset, v-offset, blur spread, color*/ 
+	box-shadow: 0px -5px 10px #000;
+}
+
+footer h5 {
+	margin: 0px;
+	display: block;
+	text-align: center;
+}
+
+.page-header {
+	text-align: center;
+}
+
+.text-header {
+	/* border width style and color*/ 
+	border-bottom: 1.5px dotted #ADAEB5;
+	width: 100%;
+}
+
+.section-border {
+	/* border to show where how much space
+	the nav bar links should leave*/
+	border: 1px solid transparent;
+	border-bottom: 10px groove #3C457D;
+	padding-bottom: 100px;
+}
+
+#sub-header {
+	color: black;
+	text-decoration: underline;
+}
+
+/*
+ === MARK TABLE ===
+*/
+.mark-table-prop {
+	width: 60%;
+	text-align: center;
+	margin: auto;
+}
+
+.mark-table-prop > div{
+	border: 1px #000 solid;
+}
+
+.mark-header{
+	color: #000;
+	background-color: #3C457D;
+}
+
+.remark-section{
+	margin: 10px;
+}
+
+.remark-textbox{
+	margin-right: 10px;
+}
+
+.header-col{
+	flex: 1.5;
+}
+
+.mark-col{
+	flex: 0.5;
+}
+
+.remark-col{
+	flex: 3;
+}
+
+/*
+ === INSTRUCTOR TABLE ===
+*/
+.instructor-table-prop{
+	width: 95%;
+	margin: auto;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.stud-name-col > h4{
+	margin: 5px;
+}
+
+.stud-name-col{
+	flex: 1.5;
+}
+
+.stud-mark-col{
+	flex:  0.5;
+}
+
+.stud-mark-col > h4{
+	word-break: break-word;
+}
+
+.change-mark{
+	margin: auto;
+	width: 70px;
+}
+
+/*
+ === TABLE DISPLAY AND DESIGN ===
+*/
+.table-layout {
+	padding-bottom: 20px;
+}
+
+.table-header {
+	color: #000;
+	background-color: #3C457D;
+	height: 100%;
+	margin: 0px -10px;
+}
+
+.table-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+/* Every column in the row display*/
+.table-row > div {
+	display: flex;
+	flex-direction: column;
+	padding: 0px 10px;
+    justify-content: center;
+}
+
+.odd-row {
+	background-color: #ADAEB5;
+}
+
+/* Page text display and design*/
+.page-desc-text {
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+	text-align: left;
+	color:#46494f;
+}
+
+/*
+ === PAGE BORDER DISPLAY AND DESIGN ===
+*/
+.border-design {
+	border: 1px #E6E8F4 solid;
+	box-shadow: 0 0 25px #000;
+	border-radius: 10px;
+	background-color: #E6E8F4;
+	padding: 0px 20px;
+}
+
+.border-design a {
+	color: #3366BB;
+	text-decoration: none;
+}
+
+.border-design a:hover {
+	color: #6293E5;
+	text-decoration: underline;
+}
+
+.border-design li {
+	margin:10px 0px;
+	word-wrap: break-word
+}
+
+/*
+ === NAVIGATION BAR DISPLAY AND DESIGN ===
+*/
+.nav-bar {
+	width: 100%;
+	padding:0px;
+	background-color: #3C457D;
+	box-shadow: 0px 3px 10px #000;
+	position: fixed;
+	top: 0px;
+}
+
+.nav-bar ul {
+	margin: 0px;
+  	padding: 0px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+
+.nav-bar a {
+	display: block;
+	color: #FFF;
+	text-align: center;
+	padding: 15px 10px;
+	font-size: 0.85em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.nav-bar a:hover {
+	height: 35%;
+	background-color: #444E8E;
+	text-shadow: 1px 0px 20px #FFF;
+	transform: scale(1.1);
+	box-shadow: 0px 0px 1px #2B315A;
+}
+
+.nav-bar a:active {
+	color: #46494F;
+}
+
+/*
+ === DROP DOWN MENU DISPLAY AND DESIGN ===
+*/
+#drop-down-menu {
+	/* Make sure its not visable when full-screen*/
+	display: none;
+}
+
+.drop-button {
+	width: 10%;
+	background: url(img/down.png) no-repeat center;
+	background-size: contain;
+	padding-bottom: 40px;
+	margin: auto;
+	display: none;
+}
+
+.drop-button:hover {
+	background-color: #444E8E;
+}
+
+/* Page design and details*/
+#home-page p {
+	margin-top: 5px;
+}
+#home-page h3 {
+	margin-bottom: 0px;
+}
+
+#resources-page h5 {
+	display: inline;
+	margin: 0px;
+}
+
+#input-page {
+	margin-top: 100px;
+	padding-bottom: 100px;
+}
+
+#feedback-page {
+	margin: auto;
+	margin-top: 100px;
+	padding-bottom: 100px;
+	width: 50%;
+}
+
+/* Title of home page design and display*/
+.home-name {
+	width:80%;
+	margin: auto;
+	margin-top: 95px;
+	text-align: center;
+	color: #3C457D;
+}
+
+/* Title of home page design and display*/
+.account-name {
+	width:100%;
+	margin: auto;
+	margin-top: 95px;
+	text-align: center;
+	color: #3C457D;
+	padding-bottom: 20px;
+}
+
+/* Course Team section design and display*/
+
+.course-team-info h4 {
+	line-height: 0px;
+}
+
+.course-team-info h3 {
+	margin-bottom: 0px;
+}
+
+.course-team-info img {
+	width: 25%;
+	min-width: 100px;
+	height: auto;
+	margin-bottom: -15px;
+}
+
+.info-text {
+	font-style: italic;
+	color: #1D213D;
+}
+
+/* Change course team layout at a smaller dispaly*/
+@media (max-width: 950px) {
+	.course-table-prop {
+	flex-direction: column;
+	}
+
+	.course-team-info .hour-text {
+		line-height: 15px;
+	}
+
+}
+
+/*
+ === SCHEDULE TABLE COLUMN DISPLAY ===
+*/
+.schedule-table-prop {
+	width: 95%;
+	margin: auto;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.week-col {
+	min-width: 50px;
+	flex: 0.5;
+}
+
+.topic-col, .reading-col {
+	min-width: 120px;
+	flex: 3;
+}
+
+.lec-col {
+	min-width: 100px;
+	flex: 3;
+}
+
+.class-col {
+	min-width: 80px;
+	flex: 1;
+}
+
+/*
+ === ASSIGNMENT TABLE COLUMN DISPLAY ===
+*/
+.assignment-table-prop {
+	width: 95%;
+	text-align: center;
+	margin: auto;
+}
+
+.num-col {
+	min-width: 10px;
+	flex: 0.2;
+}
+
+.exercise-col, .weight-col, .assignment-solution-col, .team-col{
+	min-width: 80px;
+	flex: 0.5;
+}
+
+.assignment-topic-col {
+	min-width: 120px;
+	flex: 0.5;
+}
+
+.due-col {
+	min-width: 150px;
+	flex: 3;
+}
+
+/* Feedback form display and design*/
+.feedback-form {
+	color: #3C457D;
+	margin-bottom: 20px;
+	font-size: 15px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.feedback-border{
+	margin: auto;
+	margin-bottom: 20px;
+	width: 80%;
+	border: 1px #000 solid;
+	background-color: #ADAEB5;
+}
+
+.feedback-question{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.feedback-ans{
+	margin-left: 20px;
+	font-weight: normal;
+	font-style: italic;
+	color: black;
+}
+
+.login-logo {
+	display: block;
+	margin: auto;
+	width: 45%;
+	max-width: 300px;
+	min-width: 250px;
+	height: auto;
+}
+
+/* Submit button display and design*/
+.btn {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.btn-submit {
+	color: #FFF;
+	background-color: #444E8E;
+	border-color: #444E8E;
+	padding: 15px 10px;
+	font-size: 0.85em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.btn-submit:hover {
+	height: 35%;
+	text-shadow: 1px 0px 20px #FFF;
+	box-shadow: 0px 0px 2px #000;
+}
+
+/* Popup display and design*/
+.pop-up{
+	text-align: left;
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: -100px;
+	margin-left: 10%;
+}
+
+.pop-up h5{
+	padding:10px 10px;
+	display: inline-block;
+	color: white;
+	background-color: #5BC236;
+}
+
+.feedback-popup{
+	margin-left: 30%;
+}
+
+.error h5{
+	background-color: #ff6666;
+}
+
+/*
+ === CHANGE TABLE DISPLAY ===
+*/
+@media (max-width: 1350px) {
+	.mark-table-prop{
+		flex-direction: column;
+	}
+
+	.instructor-table-prop{
+		flex-direction: column;
+	}
+
+	.instructor-table-prop > div {
+		border: 1px #000 solid;
+	}
+}
+
+/*
+ === CHANGE NAV BAR DISPLAY ===
+*/
+@media (max-width: 1240px) {
+	/* Stop showing sections in nav bar*/
+	.nav-bar ul {
+	display: none;
+	}
+
+	/* Show nav bar with drop button*/
+	.drop-button {
+		display: flex;
+	}
+
+	/* Show drop down menu when drop button clicked*/
+	#drop-down-menu:checked + label + ul { 
+	display: block;
+	}
+
+	/* Change pic in drop button*/
+	#drop-down-menu:checked + .drop-button {
+	background: url(img/up.png) no-repeat center;
+	background-size: contain;
+	}
+
+	/* Drop button design*/
+	#drop-down-menu:checked + .drop-button:hover {
+	background-color: #444E8E;
+	}
+
+}
+
+/*
+ === CHANGE TABLE DISPLAY ===
+*/
+@media (max-width: 1050px) {
+	/* Change table design and display*/
+	.assignment-table-prop {
+	flex-direction: column;
+	}
+
+	#assignments-page .table-row > div {
+	border: 1px #000 solid;
+	}
+}
+
+/*
+ === CHANGE TABLE DISPLAY ===
+*/
+@media (max-width: 835px) {
+	/* Change table design and display*/
+	.table-row {
+	flex-direction: column;
+	}
+
+	.schedule-table-prop > div {
+	border: 1px #000 solid;
+	}
+
+	.empty-col{
+	visibility:visible;
+	}
+
+	.instructor-info h4 {
+	line-height: normal;
+	}
+}
