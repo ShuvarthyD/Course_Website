@@ -169,12 +169,11 @@ def account():
 							# Check if user sending a differnt remark for the assessment
 							elif result[request.form['remark-type']]!=request.form['remark-desc']:
 								# Add remark to previous remark
+								remark_update = result[request.form['remark-type']] + ',' + request.form['remark-desc']
 								updateSQL="""UPDATE Remark
 										   SET '{}' = '{}'  
 										   WHERE username = '{}'""".format(request.form['remark-type'],
-										   								   result[request.form['remark-type']] +
-										   								   '\n' +
-										   								   request.form['remark-desc'],
+										   								   remark_update,
 										   								   session['username']);
 								db.engine.execute(text(updateSQL))
 								session.pop('pop_up', None)
@@ -399,4 +398,4 @@ def logout():
 	return redirect(url_for('home'))
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug = True)
