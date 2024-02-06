@@ -177,7 +177,7 @@ def account():
 										   								   session['username']);
 								db.engine.execute(text(updateSQL))
 								session.pop('pop_up', None)
-								flash('Remark Request Sent!')
+								flash('Remark Request Updated!')
 								return render_template('account.html')
 							# Check if user sending the same remark for the assessment
 							elif result[request.form['remark-type']]==request.form['remark-desc']:
