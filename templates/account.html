@@ -306,7 +306,14 @@
 									</div>
 									{% for info in infos[3:] %} 
 										<div class="stud-mark-col">
-											<h4>{{ info }}</h4>
+											{% if info %}
+												<!-- Display each remark request in a newline -->
+												{% for i in info.split(",") %}
+													<h4>{{ i }}</h4>
+												{% endfor %}
+											{% else %}
+												<h4>-</h4>
+											{% endif %}
 										</div>
 									{% endfor %}
 								</div>
