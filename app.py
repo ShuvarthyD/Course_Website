@@ -184,6 +184,7 @@ def account():
 								session['pop_up'] = 'error'
 								flash('Remark Already Sent!')
 								return render_template('account.html')
+							break
 					# If it doesnt exist insert remark into table
 					insertSQL= """INSERT INTO Remark (username,'{}')
 								VALUES ('{}', '{}')""".format(request.form['remark-type'],
