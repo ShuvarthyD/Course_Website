@@ -49,7 +49,7 @@
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
 										<!-- Create a hidden input on form to state assessment type -->
-										<input type="hidden" name="remark-type" value="remark_a1">
+										<input type="hidden" name="remark-type" value="A1">
 										<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 										<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -64,7 +64,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_a2">
+											<input type="hidden" name="remark-type" value="A2">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -79,7 +79,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_a3">
+											<input type="hidden" name="remark-type" value="A3">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -94,7 +94,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_q1">
+											<input type="hidden" name="remark-type" value="Q1">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -109,7 +109,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_q2">
+											<input type="hidden" name="remark-type" value="Q2">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -124,7 +124,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_q3">
+											<input type="hidden" name="remark-type" value="Q3">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -139,7 +139,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_midterm">
+											<input type="hidden" name="remark-type" value="Midterm">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -154,7 +154,7 @@
 								</div>
 								<div class="remark-col">
 									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="remark_final">
+											<input type="hidden" name="remark-type" value="Final">
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
 									</form>
@@ -246,49 +246,19 @@
 						<h2 class="page-header">Student Remark Requests</h2>
 						<div class="table-layout">
 							<div class="table-row instructor-table-prop">
-								<div class="stud-name-col">
+								<div class="stud-rename-col">
 									<div class="table-header">
 										<h3>Name & Username</h3>
 									</div>
 								</div>
 								<div class="stud-mark-col">
 									<div class="table-header">
-										<h3>A1</h3>
+										<h3>Assessment</h3>
 									</div>
 								</div>
 								<div class="stud-mark-col">
 									<div class="table-header">
-										<h3>A2</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>A3</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>Q1</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>Q2</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>Q3</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>Midterm</h3>
-									</div>
-								</div>
-								<div class="stud-mark-col">
-									<div class="table-header">
-										<h3>Final</h3>
+										<h3>Request</h3>
 									</div>
 								</div>
 							</div>
@@ -300,22 +270,16 @@
 								{% else %}
 									<div class="table-row instructor-table-prop">
 								{% endif %}
-									<div class="stud-name-col">
+									<div class="stud-rename-col">
 										<h4>{{ infos[1] }}</h4>
 										<h4> {{ infos[2] }}</h4>
 									</div>
-									{% for info in infos[3:] %} 
-										<div class="stud-mark-col">
-											{% if info %}
-												<!-- Display each remark request in a newline -->
-												{% for i in info.split(",") %}
-													<h4>{{ i }}</h4>
-												{% endfor %}
-											{% else %}
-												<h4>-</h4>
-											{% endif %}
-										</div>
-									{% endfor %}
+									<div class="stud-mark-col">
+										<h4>{{ infos[3] }}</h4>
+									</div>
+									<div class="stud-mark-col">
+										<h4>{{ infos[4] }}</h4>
+									</div>
 								</div>
 							{% endfor %}
 						</div>
