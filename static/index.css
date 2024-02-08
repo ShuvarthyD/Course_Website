@@ -103,12 +103,16 @@ footer h5 {
 	margin: 5px;
 }
 
+.stud-rename-col > h4{
+	margin: 5px;
+}
+
 .stud-name-col{
 	flex: 1.5;
 }
 
-.stud-mark-col{
-	flex:  0.5;
+.stud-mark-col,.stud-rename-col{
+	flex: 0.5;
 }
 
 .stud-mark-col > h4{
