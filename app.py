@@ -145,55 +145,13 @@ def account():
 			if request.method=='POST':
 				remark_desc = request.form['remark-desc']
 				if request.form['remark-desc']:
-					sql= """
-					SELECT *
-					FROM Remark
-					"""
-					results = db.engine.execute(text(sql))
-					# Loop through remark table
-					for result in results:
-						# Check if user already exists
-						if result['username']==session['username']:
-							# Check if user sending a new remark for the assessment
-							if not result[request.form['remark-type']]:
-								# Add remark to remark table
-								updateSQL="""UPDATE Remark
-										   SET '{}' = '{}'  
-										   WHERE username = '{}'""".format(request.form['remark-type'],
-										   								   request.form['remark-desc'],
-										   								   session['username']);
-								db.engine.execute(text(updateSQL))
-								session.pop('pop_up', None)
-								flash('Remark Request Sent!')
-								return render_template('account.html')
-							# Check if user sending a differnt remark for the assessment
-							elif result[request.form['remark-type']]!=request.form['remark-desc']:
-								# Add remark to previous remark
-								remark_update = result[request.form['remark-type']] + ',' + request.form['remark-desc']
-								updateSQL="""UPDATE Remark
-										   SET '{}' = '{}'  
-										   WHERE username = '{}'""".format(request.form['remark-type'],
-										   								   remark_update,
-										   								   session['username']);
-								db.engine.execute(text(updateSQL))
-								session.pop('pop_up', None)
-								flash('Remark Request Updated!')
-								return render_template('account.html')
-							# Check if user sending the same remark for the assessment
-							elif result[request.form['remark-type']]==request.form['remark-desc']:
-								session['pop_up'] = 'error'
-								flash('Remark Already Sent!')
-								return render_template('account.html')
-							break
-						# If it doesnt exist insert remark into table
-						else:
-							insertSQL= """INSERT INTO Remark (username,'{}')
-										VALUES ('{}', '{}')""".format(request.form['remark-type'],
-																	  session['username'],
-																	  request.form['remark-desc']);
-							db.engine.execute(text(insertSQL))
-							session.pop('pop_up', None)
-							flash('Remark Request Sent!')
+					insertSQL= """INSERT INTO Remark (username,assessment,request)
+								VALUES ('{}', '{}', '{}')""".format(session['username'],
+																	request.form['remark-type'],
+																	remark_desc)
+					db.engine.execute(text(insertSQL))
+					session.pop('pop_up', None)
+					flash('Remark Request Sent!')
 				else:
 					session['pop_up'] = 'error'
 					flash('Please Enter A Reason For Remark')
@@ -248,14 +206,8 @@ def account():
 					odd_row = True
 				session['student_remark'][remark_num] = [odd_row, result['username'],
 														 result['name'],
-														 result['remark_a1'],
-														 result['remark_a2'],
-														 result['remark_a3'],
-														 result['remark_q1'],
-														 result['remark_q2'],
-														 result['remark_q3'],
-														 result['remark_midterm'],
-														 result['remark_final']]
+														 result['assessment'],
+														 result['request']]
 				remark_num += 1
 				odd_row_num += 1
 
