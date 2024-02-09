@@ -132,16 +132,18 @@ def account():
 				FROM Marks
 				"""
 			results = db.engine.execute(text(sql))
+			# Store the assassment name and mark in a dict
+			session['marks'] = {}
 			for result in results:
 				if result['username']==session['username']:
-					session['assignemnt1'] = result['assignemnt1']
-					session['assignemnt2'] = result['assignemnt2']
-					session['assignemnt3'] = result['assignemnt3']
-					session['quiz1'] = result['quiz1']
-					session['quiz2'] = result['quiz2']
-					session['quiz3'] = result['quiz3']
-					session['midterm'] = result['midterm']
-					session['final'] = result['final']
+					session['marks']["Assignment 1"] = [result['assignemnt1'],"A1"]
+					session['marks']["Assignment 2"] = [result['assignemnt2'],"A2"]
+					session['marks']["Assignment 3"] = [result['assignemnt3'],"A3"]
+					session['marks']["Quiz 1"] = [result['quiz1'],'Q1']
+					session['marks']["Quiz 2"] = [result['quiz2'],'Q1']
+					session['marks']["Quiz 3"] = [result['quiz3'],'Q3']
+					session['marks']["Midterm"] = [result['midterm'],'Midterm']
+					session['marks']["Final"] = [result['final'],'Final']
 
 			# If Student posts a remark
 			if request.method=='POST':
