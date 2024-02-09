@@ -4,11 +4,11 @@ A responsive course website created using the web framework [Flask](https://flas
 **Disclaimer:** The content on this website such as the institute name, course description, instructors, assignments, etc. is for fictional and illustrative purposes only. All images used were found in the public domain and are credited at the bottom of the homepage.
 
 # Usage
-Run the app.py script through your command line or terminal by entering `python app.py` and head over to the URL provided. 
+* Run the app.py script through your command line or terminal by entering `python app.py` and head over to the URL provided.
+* A cloud version is also available at [shuvarthyd.pythonanywhere.com](https://shuvarthyd.pythonanywhere.com/). (For the cloud version the session is cleared upon clicking the link)
 
 # Funtionality
-* Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default students and instructors that users can use, as seen in the table below:
-* A cloud version is also available at [shuvarthyd.pythonanywhere.com](https://shuvarthyd.pythonanywhere.com/). (For the cloud version the session is cleared upon clicking the link)
+Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default students and instructors that users can use, as seen in the table below:
 
 | Name          | User Type     | Username  | Password |
 | ------------- |:-------------:| ---------:| --------:|
