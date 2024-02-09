@@ -29,9 +29,9 @@ Users can view basic course content such as syllabus, resources, etc. from the h
 
 # Additional Features
 * Responsive Design
-1250x650px                 |  390x844px
-:-------------------------:|:-------------------------:
-![img](static/img/1250x650.png)  |  ![img](static/img/390x844.png)
+   1250x650px                 |  390x844px
+   :-------------------------:|:-------------------------:
+   ![img](static/img/1250x650.png)  |  ![img](static/img/390x844.png)
 
 * Error Handling
 ![img](static/img/1250x650.png)
