@@ -16,12 +16,12 @@ Users can view basic course content such as syllabus, resources, etc. from the h
 | Sue Allen     | Instructor    | instructor1 | instructor1 |
 | John Smith    | Instructor    | instructor2 | instructor2 |
 
-  *  ## Student Features
+    ## Student Features
      - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
      - Submit a remark request for any of their grades. A default remark request was set for the student Tyler Reed.
      - Submit a feedback report for their instructors (from the "Feedback" button in the navigation bar)
 
-  *  ## Instructor Features
+    ## Instructor Features
      - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with the student's remark requests and feedback. Note that a default feedback report was provided for the instructor Sue Allen.
      - Edit the marks of the students.
 
