@@ -38,128 +38,25 @@
 					{% if session['usertype'] and session['usertype'] == 'Student' %}
 						<h2 class="page-header">Grades (%)</h2>
 						<div class="table-layout">
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Assignment 1</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['assignemnt1'] }}</h4>
-								</div>
-								<!-- Form for remark input -->
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-										<!-- Create a hidden input on form to state assessment type -->
-										<input type="hidden" name="remark-type" value="A1">
-										<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-										<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Assignment 2</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['assignemnt2'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="A2">
+							{% for name, mark in session['marks'].items() %}
+								<div class="table-row mark-table-prop odd-row">
+									<div class="mark-header header-col">
+										<h3>{{ name }}</h3>
+									</div>
+									<div class="mark-col">
+										<h4>{{ mark[0] }}</h4>
+									</div>
+									<!-- Form for remark input -->
+									<div class="remark-col">
+										<form class= 'table-row remark-section' method="POST">
+											<!-- Create a hidden input on form to state assessment type -->
+											<input type="hidden" name="remark-type" value='{{ mark[1] }}'>
 											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
 											<button class="" type = "submit">submit remark request</button>
-									</form>
+										</form>
+									</div>
 								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Assignment 3</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['assignemnt3'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="A3">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Quiz 1</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['quiz1'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="Q1">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Quiz 2</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['quiz2'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="Q2">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Quiz 3</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['quiz3'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="Q3">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Midterm</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['midterm'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="Midterm">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
-							<div class="table-row mark-table-prop odd-row">
-								<div class="mark-header header-col">
-									<h3>Final</h3>
-								</div>
-								<div class="mark-col">
-									<h4>{{ session['final'] }}</h4>
-								</div>
-								<div class="remark-col">
-									<form class= 'table-row remark-section' method="POST">
-											<input type="hidden" name="remark-type" value="Final">
-											<textarea class= 'remark-textbox' name='remark-desc' cols='30'></textarea>
-											<button class="" type = "submit">submit remark request</button>
-									</form>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
 					<!-- If its a instructor -->
 					{% else %}
