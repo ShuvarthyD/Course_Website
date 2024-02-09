@@ -44,7 +44,11 @@
 										<h3>{{ name }}</h3>
 									</div>
 									<div class="mark-col">
-										<h4>{{ mark[0] }}</h4>
+										{% if mark[0] %}
+											<h4>{{ mark[0] }}</h4>
+										{% else %}
+											<h4> - </h4>
+										{% endif %}
 									</div>
 									<!-- Form for remark input -->
 									<div class="remark-col">
@@ -126,14 +130,25 @@
 									{% for info in infos[2:] %} 
 										<div class="stud-mark-col">
 											{% for type, mark in info.items() %} 
-											<h4>{{ mark }}
-												<!-- Form for Instructor to change marks -->
-												<form method="POST">
-													<input type ="hidden" name="instructor-mark-type" value="{{ user }} {{ type }}">
-													<input class="change-mark" name="instructor-mark-val" placeholder="New Mark">
-													<button type = "submit">Change Mark</button>
-												</form>
-											</h4>
+												{% if mark %} 
+													<h4>{{ mark }}
+														<!-- Form for Instructor to change marks -->
+														<form method="POST">
+															<input type ="hidden" name="instructor-mark-type" value="{{ user }} {{ type }}">
+															<input class="change-mark" name="instructor-mark-val" placeholder="New Mark">
+															<button type = "submit">Change Mark</button>
+														</form>
+													</h4>
+												{% else %} 
+													<h4> - 
+														<!-- Form for Instructor to change marks -->
+														<form method="POST">
+															<input type ="hidden" name="instructor-mark-type" value="{{ user }} {{ type }}">
+															<input class="change-mark" name="instructor-mark-val" placeholder="New Mark">
+															<button type = "submit">Change Mark</button>
+														</form>
+													</h4>
+												{% endif %} 
 											{% endfor %}
 										</div>
 									{% endfor %}
