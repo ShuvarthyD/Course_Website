@@ -7,7 +7,8 @@ A responsive course website created using the web framework [Flask](https://flas
 Run the app.py script through your command line or terminal by entering `python app.py` and head over to the URL provided. 
 
 # Funtionality
-Users can view basic course content such as syllabus, resources, etc. from the homepage. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default students and instructors that users can use, as seen in the table below:
+* Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default students and instructors that users can use, as seen in the table below:
+* A cloud version is also available at [ShuvarthyD.pythonanywhere.com](ShuvarthyD.pythonanywhere.com). (For the cloud version the session is cleared upon clicking the link)
 
 | Name          | User Type     | Username  | Password |
 | ------------- |:-------------:| ---------:| --------:|
