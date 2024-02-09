@@ -3,9 +3,10 @@ from flask import (Flask, session, redirect,
 				   render_template, flash)
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
+import os
 
 app=Flask(__name__)
-app.secret_key=b'debnath'
+app.secret_key= os.urandom(12).hex()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
