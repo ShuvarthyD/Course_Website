@@ -241,17 +241,6 @@ def account():
 		flash('Please Login To View The Page')
 		return  redirect(url_for('login'))
 
-# Home Page
-@app.route("/home")
-@app.route("/index")
-def index():
-	if 'username' in session:
-		return render_template('index.html')
-	else:
-		session['pop_up'] = 'error'
-		flash('Please Login To View The Page')
-		return redirect(url_for('login'))
-
 # Send Feedback Page
 @app.route("/send_feedback",methods=['GET','POST'])
 def send_feedback():
