@@ -1,5 +1,5 @@
 # Description
-A responsive course website created using the web framework [Flask](https://flask.palletsprojects.com/en/3.0.x/). [DB4S](https://sqlitebrowser.org/) along with the extension [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) was used to create, edit and manage the database file for this site.
+A responsive course website created using the web framework [Flask](https://flask.palletsprojects.com/en/3.0.x/) and [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/). [DB4S](https://sqlitebrowser.org/) along with the extension [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) was used to create, edit and manage the database file for this site.
 
 **Disclaimer:** The content on this website such as the institute name, course description, instructors, assignments, etc. is for fictional and illustrative purposes only. All images used were found in the public domain and are credited at the bottom of the homepage.
 
