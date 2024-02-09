@@ -34,5 +34,5 @@ Users can view basic course content such as syllabus, resources, etc. from the h
    ![img](static/img/1250x650.png)  |  ![img](static/img/390x844.png)
 
 * Error Handling
-![img](static/img/1250x650.png)
+![img](static/img/Error.png)
 
