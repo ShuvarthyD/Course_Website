@@ -52,7 +52,7 @@ def login():
 								  '! Click My Account to see your Info and Student Grades')
 						# Remove error pop_pop session 
 						session.pop('pop_up', None)
-						return redirect(url_for('index'))
+						return redirect(url_for('home'))
 			session['pop_up'] = 'error'
 			flash('Incorrect UserName/Password! Please Try Again')
 			return render_template('login.html')
@@ -62,7 +62,7 @@ def login():
 		flash('You Are Already Logged In ' +
 			  session['name'] +
 			  '! Logout To Sign In As A Different User')
-		return redirect(url_for('index'))
+		return redirect(url_for('home'))
 	else:
 		return render_template('login.html')
 
@@ -120,7 +120,7 @@ def register():
 	else:
 		session['pop_up'] = 'error'
 		flash('Please Logout To Register For A New Account')
-		return redirect(url_for('index'))
+		return redirect(url_for('home'))
 	return render_template('register.html')
 
 # Account Page
@@ -294,7 +294,7 @@ def send_feedback():
 		else:
 			session['pop_up'] = 'error'
 			flash('Only Students Can View This Page')
-			return redirect(url_for('index'))
+			return redirect(url_for('home'))
 	else:
 		session['pop_up'] = 'error'
 		flash('Please Login To View The Page')
@@ -326,7 +326,7 @@ def my_feedback():
 		else:
 			session['pop_up'] = 'error'
 			flash('Only Instructors Can View This Page')
-			return redirect(url_for('index'))
+			return redirect(url_for('home'))
 	else:
 		session['pop_up'] = 'error'
 		flash('Please Login To View The Page')
