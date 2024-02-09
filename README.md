@@ -19,7 +19,7 @@ Users can view basic course content such as syllabus, resources, etc. They can a
 
 ## Student Features
    - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
-   - Submit a remark request for any of their grades. A default remark request was set for the student Tyler Reed.
+   - Submit a remark request for any of their grades. Both default students have preset remark requests.
    - Submit a feedback report for their instructors (from the "Feedback" button in the navigation bar)
 
 ## Instructor Features
