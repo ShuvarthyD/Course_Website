@@ -18,8 +18,7 @@ Users can view basic course content such as syllabus, resources, etc. They can a
 | John Smith    | Instructor    | instructor2 | instructor2 |
 
 ## Student Features
-   - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for    
-     the 2 students seen in the table above.
+   - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
    - Submit a remark request for any of their grades. A default remark request was set for the student Tyler Reed.
    - Submit a feedback report for their instructors (from the "Feedback" button in the navigation bar)
 
