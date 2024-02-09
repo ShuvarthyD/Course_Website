@@ -118,7 +118,7 @@ def register():
 		session['pop_up'] = 'error'
 		flash('Please Logout To Register For A New Account')
 		return redirect(url_for('index'))
-	return render_template('register.html')
+	return render_template('login.html')
 
 # Account Page
 @app.route("/account",methods=['GET','POST'])
