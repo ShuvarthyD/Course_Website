@@ -3,7 +3,13 @@ from flask import (Flask, session, redirect,
 				   render_template, flash)
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
+from matplotlib.ticker import MaxNLocator
 import os
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 
 app=Flask(__name__)
 app.secret_key= os.urandom(12).hex()
@@ -317,9 +323,9 @@ def my_feedback():
 			for result in results:
 				if result['username']== session['username']:
 					session['instructor_feedback'][feedback_num] = [result['teaching_liking'],
-																		  result['teaching_improve'],
-																		  result['lab_liking'],
-																		  result['lab_improve']]
+																	result['teaching_improve'],
+																	result['lab_liking'],
+																	result['lab_improve']]
 				feedback_num += 1
 
 			return render_template('my_feedback.html')
@@ -327,6 +333,162 @@ def my_feedback():
 			session['pop_up'] = 'error'
 			flash('Only Instructors Can View This Page')
 			return redirect(url_for('home'))
+	else:
+		session['pop_up'] = 'error'
+		flash('Please Login To View The Page')
+		return redirect(url_for('login'))
+
+# Instructor Grade Summary Page
+@app.route("/summary")
+def summary():
+	# Check if Instructor is on page
+	if 'username' in session:
+		# Join Student and Marks table and store info into dict.
+		sql= """
+			SELECT *
+			FROM Student
+			LEFT JOIN Marks
+			ON Student.username = Marks.username
+			"""
+		# Create dict for the grades and store all grades and student info in it
+		session['grades'] = {'A1': [], 'A2': [], 'A3': [], 'Q1': [], 'Q2': [], 'Q3': [], 'Midterm': [], 'Final': [], 'Name': [], 'User': []}
+		results = db.engine.execute(text(sql))
+		for result in results:
+			session['grades']['A1'].append(result['assignemnt1'])
+			session['grades']['A2'].append(result['assignemnt2'])
+			session['grades']['A3'].append(result['assignemnt3'])
+			session['grades']['Q1'].append(result['quiz1'])
+			session['grades']['Q2'].append(result['quiz2'])
+			session['grades']['Q3'].append(result['quiz3'])
+			session['grades']['Midterm'].append(result['midterm'])
+			session['grades']['Final'].append(result['final'])
+			session['grades']['Name'].append(result['name'])
+			session['grades']['User'].append(result['username'])
+		# Check usertype
+		if session['usertype']=='Instructor':
+			df = pd.DataFrame(session['grades'])
+			df['A_avg'] = df[['A1','A2','A3']].mean(axis=1)
+			df['Q_avg'] = df[['Q1','Q2','Q3']].mean(axis=1)
+			df['Name_Id'] = df["Name"] + "\n(" + df["User"] + ")"
+			bin_labels_pct = ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100']
+			bin_labels_letr = ['F\n(0-49)', 'D\n(50-59)', 'C\n(60-69)', 'B\n(70-79)', 'A\n(80-100)']
+			bin_labels_letr2 = ['F', 'D-','D','D+', 'C-','C','C+', 'B-','B','B+', 'A-','A','A+']
+			sns.set_color_codes("pastel")
+			pass_col = sns.color_palette("Blues_d",n_colors=3)
+			fail_col = sns.color_palette("Reds_d",n_colors=1)
+			l_palette = fail_col + pass_col*4
+	
+			for key, grades in df.items():
+				if key not in ['A_avg', 'Q_avg', 'Name', 'User', "Name_Id"]:
+					# Grade distribution plot (%)
+					df[key + '_range'] = pd.cut(df[key], [0, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101], labels=bin_labels_pct, right=False)
+					grade_counts = df[key + '_range'].value_counts().sort_index()
+					sns.barplot(x=grade_counts.index, y=grade_counts.values,zorder = 3)
+					plt.title(f"Grade Distribution of {key}")
+					plt.suptitle(f"Students: {df.shape[0] - df[key].isna().sum()} Mean: {df[key].mean()} Median: {df[key].median()} Std. Dev: {round(df[key].std(),1)}")
+					plt.xticks(rotation=45)
+					plt.gca().get_yaxis().set_major_locator(plt.MaxNLocator(integer=True))
+					plt.grid(axis = 'y', linestyle = '--', linewidth = 0.5,zorder = 0)
+					plt.xlabel("Grade (%)")
+					plt.ylabel("Number of Students")
+					plt.tight_layout()
+					plt.savefig(f"static\img\graphs\{key}.png",transparent=True)
+					plt.clf()
+					# Grade distribution plot (letter)
+					df['A1_range'] = pd.cut(df[key], bins=[0, 50, 60, 70, 80, 101], labels=bin_labels_letr, right=False)
+					df['bins_2'] = pd.cut(df[key], bins=[0, 50,53,57,60,63,67,70,73,77,80,85,90,101],labels=bin_labels_letr2,right=False)
+					grade_counts = df.groupby(['A1_range', 'bins_2']).size().unstack(fill_value=0)
+					grade_counts.plot(kind='bar', stacked=True, zorder=3, color = l_palette)
+					plt.title(f"Grade Distribution of {key}")
+					plt.suptitle(f"Students: {df.shape[0] - df[key].isna().sum()} Mean: {df[key].mean()} Median: {df[key].median()} Std. Dev: {round(df[key].std(),1)}")
+					plt.gca().get_yaxis().set_major_locator(plt.MaxNLocator(integer=True))
+					plt.grid(axis = 'y', linestyle = '--', linewidth = 0.5,zorder = 0)
+					plt.xticks(rotation=0)
+					plt.legend(['Fail','Letter -','Letter','Letter +'])
+					plt.xlabel("Grade (Letter)")
+					plt.ylabel("Number of Students")
+					plt.tight_layout()
+					plt.savefig(f"static\img\graphs\{key}_letter.png",transparent=True)
+					plt.clf()
+					# Top Students for each assessment
+					top = df[[key,'Name_Id']].sort_values(by=key, ascending=False).head(5)
+					palette=sns.color_palette("Greens_d",n_colors=5)
+					palette.reverse()
+					ax = sns.barplot(x=key, y='Name_Id', data=top, orient='h',palette=palette)
+					ax.bar_label(ax.containers[0])
+					plt.title(f"Top 5 Students for {key}")
+					plt.gca().get_yaxis().set_major_locator(plt.MaxNLocator(integer=True))
+					plt.xlabel("Grade (%)")
+					plt.ylabel("Student Name + UserID")
+					for container in ax.containers:
+						ax.bar_label(container)
+					plt.tight_layout()
+					plt.savefig(f"static\img\graphs\{key}_Top.png",transparent=True)
+					plt.clf()
+
+			# Assessment grade throughout course
+			val = df[['Q1','A1','Q2','A2','Midterm','Q3','A3','Final']].mean()
+			assessment_df = pd.DataFrame({'Assessment': val.index, 'Average': val.values})
+			plt.axhline(y=assessment_df['Average'].mean(), color='gray', linestyle='--', label=f"Course Average : {round(assessment_df['Average'].mean(),2)}")
+			plt.plot(assessment_df['Assessment'], assessment_df['Average'], marker='o', linestyle='-')
+			plt.title("Average Assessment Grades Throughout Course")
+			for x, y in zip(assessment_df['Assessment'], assessment_df['Average']):
+				plt.annotate(str(y), xy=(x,y), xytext=(5,6), textcoords='offset points')
+			plt.xlabel("Assessment")
+			plt.ylabel("Grade Avg. (%)")
+			plt.legend()
+			plt.tight_layout()
+			plt.savefig(f"static\img\graphs\Course_avg.png",transparent=True)
+			plt.clf()			
+			# Corellation heatmap between avg quiz and asignment grades and the mifterm and final grades
+			corr = df[["Midterm", "Final", "A_avg", "Q_avg"]].corr()
+			sns.heatmap(corr,annot=True,fmt=".2f", linewidth=.5)
+			plt.title("Correlation Between Assessment Grades")
+			plt.tight_layout()
+			plt.savefig("static\img\graphs\corr.png",transparent=True)
+			plt.clf()
+		elif session['usertype']=='Student':
+			sql= """
+				SELECT *
+				FROM Marks
+				"""
+			results = db.engine.execute(text(sql))
+			# Store the assassment name and mark in a dict
+			session['my_grades'] = {}
+			for result in results:
+				if result['username']==session['username']:
+					session['my_grades']["A1"] = result['assignemnt1']
+					session['my_grades']["A2"] = result['assignemnt2']
+					session['my_grades']["A3"] = result['assignemnt3']
+					session['my_grades']["Q1"] = result['quiz1']
+					session['my_grades']["Q2"] = result['quiz2']
+					session['my_grades']["Q3"] = result['quiz3']
+					session['my_grades']["Midterm"] = result['midterm']
+					session['my_grades']["Final"] = result['final']
+			# Course Assessment Info
+			df_course = pd.DataFrame(session['grades'])
+			val = df_course[['Q1','A1','Q2','A2','Midterm','Q3','A3','Final']].mean()
+			assessment_df = pd.DataFrame({'Assessment': val.index, 'Average': val.values})
+			plt.plot(assessment_df['Assessment'], assessment_df['Average'], marker='o', color = 'orange', linestyle='-', label = 'Course Avg. Grades')
+			plt.axhline(y=assessment_df['Average'].mean(), color='orange', linestyle='--', label=f"Course Avg. : {round(assessment_df['Average'].mean(),2)}")
+			# Student Assessment Info
+			df_stud = pd.DataFrame(session['my_grades'],index=[0])
+			df_stud = df_stud[['Q1','A1','Q2','A2','Midterm','Q3','A3','Final']].mean()
+			df_stud = pd.DataFrame({'Assessment': df_stud.index, 'Grade': df_stud.values})
+			plt.plot(df_stud['Assessment'], df_stud['Grade'], marker='o', linestyle='-',color = 'blue', label = 'My Avg. Grades')
+			plt.axhline(y=df_stud['Grade'].mean(), color='blue', linestyle='--', label=f"My Avg. : {round(df_stud['Grade'].mean(),2)}")
+			plt.title("Assessment Avg. Compared with Class")
+			for x, y in zip(assessment_df['Assessment'], assessment_df['Average']):
+				plt.annotate(str(y), xy=(x,y), xytext=(5,6), textcoords='offset points', color = 'orange')
+			for x, y in zip(df_stud['Assessment'], df_stud['Grade']):
+				plt.annotate(str(y), xy=(x,y), xytext=(5,6), textcoords='offset points', color = 'blue')
+			plt.xlabel("Assessment")
+			plt.ylabel("Grade Avg. (%)")
+			plt.legend()
+			plt.tight_layout()
+			plt.savefig("static\img\graphs\Stud_Avg.png",transparent=True)
+			plt.clf()
+		return render_template('summary.html')
 	else:
 		session['pop_up'] = 'error'
 		flash('Please Login To View The Page')
@@ -346,4 +508,4 @@ def logout():
 	return redirect(url_for('home'))
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)

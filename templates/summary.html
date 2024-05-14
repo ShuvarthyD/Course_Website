@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Make page view scale with screen-width of device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Introduction to Web Development</title>
+	<link rel="icon" href="../static/img/title_icon.png">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<!-- Check if there are any flashed messages-->
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<!-- Loop through messages-->
+			{% for message in messages %}
+				<!-- Check if its a error message-->
+				{% if session['pop_up'] and session['pop_up'] == 'error' %}
+					<div class ="pop-up error">
+				{% else %}
+					<div class ="pop-up">
+				{% endif %}
+					<h5>{{ message }}</h5>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<!-- New Section of Page-->
+	<div id="summary-page">
+		<div class="page-desc-text">
+			<div class="border-design">
+				<a class="info-text" href="/account">Back To My Account</a>
+				<h2 class="page-header">Assessment Summary</h2>
+				<!-- If its a student -->
+				{% if session['usertype'] and session['usertype'] == 'Student' %}
+					<img id="stud_img" src="../static/img/graphs/Stud_Avg.png">
+				<!-- If its a instructor -->
+				{% else %}
+					<div id="outer-menu">
+						<div class="selection-menu">
+							<select id="imageSelect">
+								<option value="../static/img/graphs/A1" selected="selected">Assignment 1</option>
+								<option value="../static/img/graphs/A2">Assignment 2</option>
+								<option value="../static/img/graphs/A3">Assignment 3</option>
+								<option value="../static/img/graphs/Q1">Quiz 1</option>
+								<option value="../static/img/graphs/Q2">Quiz 2</option>
+								<option value="../static/img/graphs/Q3">Quiz 3</option>
+								<option value="../static/img/graphs/Midterm">Midterm</option>
+								<option value="../static/img/graphs/Final">Final</option>
+							</select>
+							
+							<label class="ignore"><b>Choose grading system:</b></label>
+							<input class="ignore" type="radio" id="%" name="grade_sys" value="" checked>
+							<label for="%">%</label>
+							<input class="ignore" type="radio" id="Letter Grade" name="grade_sys" value="_letter">
+							<label for="Letter Grade">Letter Grade</label>
+							<button class="btn-summary" onclick="changeImage()">Get Summary</button>
+						</div>
+					</div>
+					<div class="img-container">
+						<img id="main_img" src="../static/img/graphs/A1.png" alt="Selected Image">
+						<img id="top_img" src="../static/img/graphs/A1_Top.png" alt="Selected Image">
+						<img src="../static/img/graphs/Course_avg.png">
+						<img src="../static/img/graphs/corr.png">
+					</div>
+					<script>
+						// Function to change the displayed image based on dropdown selection
+						function changeImage() {
+							var selectedImage = document.getElementById("imageSelect").value;
+							var version = document.querySelector('input[name="grade_sys"]:checked').value;
+							var imageName = selectedImage + version + ".png";
+							document.getElementById("main_img").src = imageName
+							document.getElementById("top_img").src = selectedImage + "_Top.png"
+						}
+					</script>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -332,6 +332,48 @@ footer h5 {
 
 }
 
+/* Summary Page */
+.selection-menu {
+	display: inline-flex;
+    align-items: center; 
+	background-color: #a1a1a1; /* Gray background color */
+    border: 1px solid #000000; /* Gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Add padding */
+}
+
+.selection-menu > *:not(.ignore) {
+	margin-right: 20px; /* Add margin between elements */
+  }
+
+#outer-menu {
+	width:100%;
+	display: flex;
+	justify-content: center;
+}
+
+.img-container {
+	margin-top: 20px;
+}
+
+.btn-summary {
+	color: #FFF;
+	background-color: #444E8E;
+	border-color: #444E8E;
+	padding: 5px 5px;
+	font-size: 0.85em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#main_img, #stud_img {
+	width: 55%;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /*
  === SCHEDULE TABLE COLUMN DISPLAY ===
 */
@@ -491,6 +533,7 @@ footer h5 {
 		border: 1px #000 solid;
 	}
 }
+
 
 /*
  === CHANGE NAV BAR DISPLAY ===

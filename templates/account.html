@@ -36,7 +36,7 @@
 					<h4>Username: <span class="info-text">{{ session['username'] }}</span></h4>
 					<!-- Check if user is a student then display there marks-->
 					{% if session['usertype'] and session['usertype'] == 'Student' %}
-						<h2 class="page-header">Grades (%)</h2>
+						<h2 class="page-header">Grades % (<a href="/summary">View Summary</a>)</h2>
 						<div class="table-layout">
 							{% for name, mark in session['marks'].items() %}
 								<div class="table-row mark-table-prop odd-row">
@@ -65,7 +65,7 @@
 					<!-- If its a instructor -->
 					{% else %}
 						<a class="info-text" href="/my_feedback">My FeedBack</a>
-						<h2 class="page-header">Student Grades</h2>
+						<h2 class="page-header">Student Grades (<a href="/summary">View Summary</a>)</h2>
 						<div class="table-layout">
 							<div class="table-row instructor-table-prop">
 								<div class="stud-name-col">
