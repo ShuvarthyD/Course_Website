@@ -8,14 +8,16 @@ A responsive course website created using the web framework [Flask](https://flas
 * A cloud version is also available at [shuvarthyd.pythonanywhere.com](https://shuvarthyd.pythonanywhere.com/). (For the cloud version the session is cleared upon clicking the link)
 
 # Funtionality
-Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default students and instructors that users can use, as seen in the table below:
+Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default instructors and 10 default students that users can use, as seen in the table below:
 
 | Name          | User Type     | Username  | Password |
 | ------------- |:-------------:| ---------:| --------:|
-| Mike Scott    | Student       | student1    | student1    |
-| Tyler Reed    | Student       | student2    | student2    | 
 | Sue Allen     | Instructor    | instructor1 | instructor1 |
 | John Smith    | Instructor    | instructor2 | instructor2 |
+| Mike Scott    | Student       | student1    | student1    |
+| Tyler Reed    | Student       | student2    | student2    |
+| ...   | Student       | ...    | ...    |
+| Tyler Davis    | Student       | student10    | student10    |
 
 ## Student Features
    - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
