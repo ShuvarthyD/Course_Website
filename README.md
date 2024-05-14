@@ -19,11 +19,6 @@ Users can view basic course content such as syllabus, resources, etc. They can a
 | ...   | Student       | ...    | ...    |
 | Tyler Davis    | Student       | student10    | student10    |
 
-## Student Features
-   - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
-   - Submit a remark request for any of their grades. Both default students have preset remark requests.
-   - Submit a feedback report for their instructors (from the "Feedback" button in the navigation bar)
-
 ## Instructor Features
    - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with the student's remark requests and feedback. Note that 
      a default feedback report was provided for the instructor Sue Allen.
@@ -37,6 +32,16 @@ Users can view basic course content such as syllabus, resources, etc. They can a
    Top Students              |  Correlation Heatmap   |  Avg. Grades
    :-------------------------:|:-------------------------:|:-------------------------:
    ![img](static/img/Instructor_Vis2.png)  |  ![img](static/img/Instructor_Vis3.png)   |  ![img](static/img/Instructor_Vis4.png)
+
+## Student Features
+   - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with their grades. Note that default grades were set for the 2 students seen in the table above.
+   - Submit a remark request for any of their grades. Both default students have preset remark requests.
+   - Submit a feedback report for their instructors (from the "Feedback" button in the navigation bar)
+   - Grade Summary Visual:
+
+   Grade Distribution                 |  
+   :-------------------------:
+   ![img](static/img/Student_Vis1.png)  
 
 # Additional Features
 * Responsive Design
