@@ -28,6 +28,15 @@ Users can view basic course content such as syllabus, resources, etc. They can a
    - Access their account page (from the "My Account" button in the navigation bar) to view basic user information along with the student's remark requests and feedback. Note that 
      a default feedback report was provided for the instructor Sue Allen.
    - Edit the marks of the students.
+   - View various grade summary visuals for both individual assessments and overall grades:
+  
+   Grade Distribution                 |  
+   :-------------------------:
+   ![img](static/img/Instructor_Vis1.png)  
+     
+   Top Students              |  Correlation Heatmap   |  Avg. Grades
+   :-------------------------:|:-------------------------:|:-------------------------:
+   ![img](static/img/Instructor_Vis2.png)  |  ![img](static/img/Instructor_Vis3.png)   |  ![img](static/img/Instructor_Vis4.png)
 
 # Additional Features
 * Responsive Design
