@@ -8,7 +8,7 @@ A responsive course website created using [Flask](https://flask.palletsprojects.
 * A cloud version is also available at [shuvarthyd.pythonanywhere.com](https://shuvarthyd.pythonanywhere.com/). (For the cloud version the session is cleared upon clicking the link)
 
 # Funtionality
-Users can view basic course content such as syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default instructors and 10 default students that users can use, as seen in the table below:
+Users can view basic course content such as the syllabus, resources, etc. They can also choose to **login** or **register** (from the "Login" button in the navigation bar) as a **student** or **instructor** to access additional features. There are 2 default instructors and 10 default students that users can use, as seen in the table below:
 
 | Name          | User Type     | Username  | Password |
 | ------------- |:-------------:| ---------:| --------:|
